@@ -1,59 +1,90 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SIMTA-PIKSI (Sistem Informasi Manajemen Tugas Akhir)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+SIMTA-PIKSI adalah sebuah platform berbasis web yang dikembangkan menggunakan **Laravel 11** untuk mempermudah, mendigitalkan, dan memonitor seluruh proses pengelolaan Tugas Akhir (TA) mahasiswa secara terpadu.
 
-## About Laravel
+Sistem ini menghubungkan 3 peran utama (Aktor) dalam satu ekosistem:
+1. **Admin / Koordinator TA**
+2. **Dosen Pembimbing**
+3. **Mahasiswa**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Fitur Unggulan
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🎓 Panel Mahasiswa
+- **Pengajuan Judul Cerdas**: Mahasiswa dapat mengajukan 2 alternatif judul TA sekaligus.
+- **Logbook Bimbingan**: Mencatat setiap aktivitas bimbingan lengkap dengan catatan revisi. Fitur ini telah dilengkapi sistem validasi berurutan (tidak bisa melompat tahapan jika bab sebelumnya belum di-ACC).
+- **Indikator Progress Visual**: Menampilkan persentase dan jejak langkah (Step Indicator) yang sangat intuitif untuk melihat bab mana yang sudah selesai.
+- **Pendaftaran Sidang**: Mengunggah berkas final dan mendaftar sidang secara mandiri.
 
-## Learning Laravel
+### 👨‍🏫 Panel Dosen Pembimbing
+- **Review Bimbingan Interaktif**: Menyetujui (ACC) atau menolak progress bimbingan mahasiswa.
+- **Lampiran Revisi**: Dosen tidak hanya bisa memberi komentar teks, tetapi juga melampirkan *file* dokumen (PDF/Word) yang berisi coretan revisi untuk diunduh mahasiswa.
+- **Daftar Mahasiswa Bimbingan**: Melacak seluruh anak bimbingan dalam satu dasbor rapi.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 🛡️ Panel Admin
+- **Manajemen Akun Massal**: Fitur *Import* data Mahasiswa dan Dosen via file Excel (`.xlsx`), lengkap dengan validasi duplikasi.
+- **Plotting Pembimbing**: Menentukan dan menetapkan Dosen Pembimbing 1 dan 2 untuk tiap mahasiswa.
+- **Jadwal Sidang & Penilaian**: Mengatur tanggal, ruangan, dan menginput nilai akhir sidang mahasiswa.
+- **Laporan PDF (Cetak)**: Mengekspor rekapitulasi kelulusan, jadwal sidang, daftar dosen, dan data mahasiswa ke format PDF profesional.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 🚀 Panduan Instalasi (Local Development)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Ikuti langkah-langkah berikut untuk menjalankan sistem ini di komputer Anda.
 
-### Premium Partners
+### Persyaratan Sistem:
+- **PHP** >= 8.2
+- **Composer**
+- **Node.js** & NPM
+- **MySQL** / MariaDB (via XAMPP/Laragon)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Langkah Instalasi:
 
-## Contributing
+1. **Kloning Repositori**
+   ```bash
+   git clone https://github.com/EasyItsMe/simta-piksi.git
+   cd simta-piksi
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. **Instalasi Dependencies (Backend & Frontend)**
+   ```bash
+   composer install
+   npm install
+   npm run build
+   ```
 
-## Code of Conduct
+3. **Konfigurasi Environment**
+   Gandakan file contoh menjadi file rahasia `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+   Buka file `.env` dan ubah konfigurasi database Anda menjadi:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=simta_piksi
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+   *Jangan lupa buat database kosong bernama `simta_piksi` di phpMyAdmin Anda!*
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. **Generate Key & Migrasi Database**
+   ```bash
+   php artisan key:generate
+   php artisan migrate:fresh --seed
+   ```
+   *(Perintah ini sekaligus akan membuat akun dummy untuk Admin, Dosen, dan Mahasiswa).*
 
-## Security Vulnerabilities
+5. **Nyalakan Server!**
+   ```bash
+   php artisan serve
+   ```
+   Buka browser Anda dan akses `http://localhost:8000`.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🔒 Hak Cipta & Lisensi
+Proyek ini dibangun sebagai solusi sistem akademik modern. Dirancang menggunakan prinsip UI/UX yang elegan dan standar arsitektur MVC (Model-View-Controller) yang solid.
