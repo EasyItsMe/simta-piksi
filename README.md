@@ -71,14 +71,20 @@ Ikuti langkah-langkah berikut untuk menjalankan sistem ini di komputer Anda.
    ```
    *Jangan lupa buat database kosong bernama `simta_piksi` di phpMyAdmin Anda!*
 
-4. **Generate Key & Migrasi Database**
+4. **Generate Key, Storage Link, & Migrasi**
+   Jalankan tiga perintah wajib ini secara berurutan:
    ```bash
    php artisan key:generate
+   php artisan storage:link
    php artisan migrate:fresh --seed
    ```
-   *(Perintah ini sekaligus akan membuat akun dummy untuk Admin, Dosen, dan Mahasiswa).*
+   > **Penting**: Perintah `storage:link` wajib dijalankan agar fitur *upload* / *download* file (seperti PDF revisi) bisa berjalan dengan baik.
 
-5. **Nyalakan Server!**
+5. **(Opsional) Mengembalikan Data Testing (Restore Database)**
+   Jika Anda ingin memunculkan kembali data *testing* (akun Fajri, log bimbingan yang sudah ada, dsb), Anda **tidak perlu** menggunakan hasil bawaan `migrate:fresh --seed`. 
+   Cukup buka phpMyAdmin, pilih database `simta_piksi`, lalu klik tab **Import**. Unggah file `database_backup.sql` yang ada di dalam folder proyek ini. Seluruh data *testing* lama akan langsung pulih.
+
+6. **Nyalakan Server!**
    ```bash
    php artisan serve
    ```
