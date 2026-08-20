@@ -119,9 +119,9 @@
                         <label class="form-label">Program Studi</label>
                         <select name="program_studi" class="form-select" required>
                             <option value="">-- Pilih Program Studi --</option>
-                            <option value="Teknik Informatika" {{ old('program_studi') == 'Teknik Informatika' ? 'selected' : '' }}>Teknik Informatika</option>
                             <option value="Manajemen Informatika" {{ old('program_studi') == 'Manajemen Informatika' ? 'selected' : '' }}>Manajemen Informatika</option>
-                            <option value="Sistem Informasi" {{ old('program_studi') == 'Sistem Informasi' ? 'selected' : '' }}>Sistem Informasi</option>
+                            <option value="Akuntansi" {{ old('program_studi') == 'Akuntansi' ? 'selected' : '' }}>Akuntansi</option>
+                            <option value="Sekretari" {{ old('program_studi') == 'Sekretari' ? 'selected' : '' }}>Sekretari</option>
                         </select>
                     </div>
                     <div class="col-md-6">

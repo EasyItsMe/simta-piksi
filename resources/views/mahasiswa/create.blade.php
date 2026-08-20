@@ -20,7 +20,12 @@
             <div class="row mb-4">
                 <div class="col-md-6">
                     <label class="form-label fw-bold">Program Studi</label>
-                    <input type="text" name="program_studi" class="form-control" required>
+                    <select name="program_studi" class="form-select" required>
+                        <option value="">-- Pilih Program Studi --</option>
+                        <option value="Manajemen Informatika">Manajemen Informatika</option>
+                        <option value="Akuntansi">Akuntansi</option>
+                        <option value="Sekretari">Sekretari</option>
+                    </select>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-bold">Tahun Angkatan</label>

@@ -19,7 +19,11 @@
             <div class="row mb-4">
                 <div class="col-md-6">
                     <label class="form-label fw-bold">Program Studi</label>
-                    <input type="text" name="program_studi" class="form-control" value="{{ $mahasiswa->program_studi }}" required>
+                    <select name="program_studi" class="form-select" required>
+                        <option value="Manajemen Informatika" {{ $mahasiswa->program_studi == 'Manajemen Informatika' ? 'selected' : '' }}>Manajemen Informatika</option>
+                        <option value="Akuntansi" {{ $mahasiswa->program_studi == 'Akuntansi' ? 'selected' : '' }}>Akuntansi</option>
+                        <option value="Sekretari" {{ $mahasiswa->program_studi == 'Sekretari' ? 'selected' : '' }}>Sekretari</option>
+                    </select>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-bold">Tahun Angkatan</label>
