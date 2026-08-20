@@ -183,6 +183,12 @@
             <h3 class="auth-heading">Selamat Datang Kembali 👋</h3>
             <p class="auth-subheading">Silakan masukkan email dan password Anda untuk mengakses sistem.</p>
 
+            @if(session('success'))
+                <div class="alert alert-success rounded-3 border-0 shadow-sm mb-4" role="alert">
+                    <i class="bi bi-check-circle-fill me-2"></i> {{ session('success') }}
+                </div>
+            @endif
+
             @if($errors->any())
                 <div class="alert alert-danger rounded-3 border-0 shadow-sm mb-4" role="alert">
                     <ul class="mb-0 ps-3">

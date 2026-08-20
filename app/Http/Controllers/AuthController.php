@@ -64,9 +64,10 @@ class AuthController extends Controller
         \App\Models\PendaftaranTa::create($dataPendaftaran);
 
         // Auto login
-        auth()->login($user);
+        // Hapus auto-login
+        // auth()->login($user);
 
-        return redirect()->route('dashboard')->with('success', 'Akun berhasil dibuat. Dokumen syarat pendaftaran Anda sedang diverifikasi oleh Admin.');
+        return redirect()->route('login')->with('success', 'Akun berhasil dibuat! Dokumen syarat pendaftaran Anda sedang diverifikasi oleh Admin. Anda baru bisa login setelah di-ACC.');
     }
 
     public function showLoginForm()
@@ -82,12 +83,28 @@ class AuthController extends Controller
         ]);
 
         if (auth()->attempt($credentials)) {
+            $user = auth()->user();
+            
+            // Cek verifikasi pendaftaran untuk mahasiswa baru
+            if ($user->isMahasiswa()) {
+                $pendaftaran = \App\Models\PendaftaranTa::where('mahasiswa_id', $user->mahasiswa->id)->first();
+                if ($pendaftaran) {
+                    if ($pendaftaran->status === 'menunggu') {
+                        auth()->logout();
+                        return back()->withErrors(['email' => 'Akun Anda masih dalam antrean verifikasi Admin. Silakan cek kembali nanti.'])->onlyInput('email');
+                    } elseif ($pendaftaran->status === 'ditolak') {
+                        auth()->logout();
+                        return back()->withErrors(['email' => 'Pendaftaran ditolak: ' . $pendaftaran->keterangan . '. Silakan hubungi Admin.'])->onlyInput('email');
+                    }
+                }
+            }
+
             $request->session()->regenerate();
             return redirect()->intended('dashboard');
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Email atau Password yang Anda masukkan salah.',
         ])->onlyInput('email');
     }
 
