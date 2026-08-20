@@ -61,41 +61,6 @@
                                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#verifikasiModal{{ $pendaftaran->id }}">
                                     Verifikasi
                                 </button>
-
-                                <!-- Modal Verifikasi -->
-                                <div class="modal fade text-start" id="verifikasiModal{{ $pendaftaran->id }}" tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title fw-bold">Verifikasi Berkas: {{ $pendaftaran->mahasiswa->nama_lengkap }}</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                            </div>
-                                            <form action="{{ route('admin.pendaftaran-ta.status', $pendaftaran->id) }}" method="POST">
-                                                @csrf
-                                                @method('PATCH')
-                                                <div class="modal-body">
-                                                    <div class="mb-3">
-                                                        <label class="form-label fw-bold">Keputusan Verifikasi</label>
-                                                        <select name="status" class="form-select" id="statusSelect{{ $pendaftaran->id }}" onchange="toggleKeterangan({{ $pendaftaran->id }})" required>
-                                                            <option value="">-- Pilih Keputusan --</option>
-                                                            <option value="disetujui" {{ $pendaftaran->status == 'disetujui' ? 'selected' : '' }}>ACC (Syarat Terpenuhi)</option>
-                                                            <option value="ditolak" {{ $pendaftaran->status == 'ditolak' ? 'selected' : '' }}>Tolak (Ada Syarat Kurang/Salah)</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="mb-3" id="keteranganDiv{{ $pendaftaran->id }}" style="display: {{ $pendaftaran->status == 'ditolak' ? 'block' : 'none' }};">
-                                                        <label class="form-label fw-bold">Alasan Penolakan</label>
-                                                        <textarea name="keterangan" class="form-control" rows="3" placeholder="Tuliskan dokumen apa yang salah/kurang...">{{ $pendaftaran->keterangan }}</textarea>
-                                                        <small class="text-danger">Wajib diisi jika status Ditolak.</small>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-primary">Simpan Keputusan</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
                             </td>
                         </tr>
                         @empty
@@ -112,6 +77,43 @@
         </div>
     </div>
 </div>
+
+<!-- Modals -->
+@foreach($pendaftarans as $pendaftaran)
+<div class="modal fade text-start" id="verifikasiModal{{ $pendaftaran->id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Verifikasi Berkas: {{ $pendaftaran->mahasiswa->nama_lengkap }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="{{ route('admin.pendaftaran-ta.status', $pendaftaran->id) }}" method="POST">
+                @csrf
+                @method('PATCH')
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Keputusan Verifikasi</label>
+                        <select name="status" class="form-select" id="statusSelect{{ $pendaftaran->id }}" onchange="toggleKeterangan({{ $pendaftaran->id }})" required>
+                            <option value="">-- Pilih Keputusan --</option>
+                            <option value="disetujui" {{ $pendaftaran->status == 'disetujui' ? 'selected' : '' }}>ACC (Syarat Terpenuhi)</option>
+                            <option value="ditolak" {{ $pendaftaran->status == 'ditolak' ? 'selected' : '' }}>Tolak (Ada Syarat Kurang/Salah)</option>
+                        </select>
+                    </div>
+                    <div class="mb-3" id="keteranganDiv{{ $pendaftaran->id }}" style="display: {{ $pendaftaran->status == 'ditolak' ? 'block' : 'none' }};">
+                        <label class="form-label fw-bold">Alasan Penolakan</label>
+                        <textarea name="keterangan" class="form-control" rows="3" placeholder="Tuliskan dokumen apa yang salah/kurang...">{{ $pendaftaran->keterangan }}</textarea>
+                        <small class="text-danger">Wajib diisi jika status Ditolak.</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan Keputusan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
 
 <script>
 function toggleKeterangan(id) {
