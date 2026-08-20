@@ -20,33 +20,33 @@ class UserSeeder extends Seeder
         ]);
 
         \App\Models\User::create([
-            'name' => 'Dosen Satu',
-            'email' => 'dosen1@piksi.ac.id',
-            'identifier_number' => 'NIDN12345',
+            'name' => 'Dr. Budi Santoso, M.Kom',
+            'email' => 'budi.santoso@piksi.ac.id',
+            'identifier_number' => '0412118501',
             'password' => bcrypt('password'),
             'role' => 'dosen',
         ]);
 
         \App\Models\User::create([
-            'name' => 'Dosen Dua',
-            'email' => 'dosen2@piksi.ac.id',
-            'identifier_number' => 'NIDN67890',
+            'name' => 'Siti Aminah, M.T',
+            'email' => 'siti.aminah@piksi.ac.id',
+            'identifier_number' => '0415088203',
             'password' => bcrypt('password'),
             'role' => 'dosen',
         ]);
 
         \App\Models\User::create([
-            'name' => 'Mahasiswa Satu',
-            'email' => 'mahasiswa1@piksi.ac.id',
-            'identifier_number' => 'NIM001',
+            'name' => 'Ahmad Fauzi',
+            'email' => 'ahmad.fauzi@piksi.ac.id',
+            'identifier_number' => '20230001',
             'password' => bcrypt('password'),
             'role' => 'mahasiswa',
         ]);
 
         \App\Models\User::create([
-            'name' => 'Mahasiswa Dua',
-            'email' => 'mahasiswa2@piksi.ac.id',
-            'identifier_number' => 'NIM002',
+            'name' => 'Rina Melati',
+            'email' => 'rina.melati@piksi.ac.id',
+            'identifier_number' => '20230002',
             'password' => bcrypt('password'),
             'role' => 'mahasiswa',
         ]);

@@ -23,26 +23,26 @@ class DatabaseSeeder extends Seeder
 
         $userDosen1 = User::create([
             'role_id' => $roleDosen->id,
-            'name' => 'Dosen Satu',
-            'email' => 'dosen1@piksi.ac.id',
+            'name' => 'Dr. Budi Santoso, M.Kom',
+            'email' => 'budi.santoso@piksi.ac.id',
             'password' => bcrypt('password')
         ]);
-        Dosen::create(['user_id' => $userDosen1->id, 'nidn' => 'NIDN123', 'nama_lengkap' => 'Dosen Satu, M.Kom']);
+        Dosen::create(['user_id' => $userDosen1->id, 'nidn' => '0412118501', 'nama_lengkap' => 'Dr. Budi Santoso, M.Kom']);
 
         $userDosen2 = User::create([
             'role_id' => $roleDosen->id,
-            'name' => 'Dosen Dua',
-            'email' => 'dosen2@piksi.ac.id',
+            'name' => 'Siti Aminah, M.T',
+            'email' => 'siti.aminah@piksi.ac.id',
             'password' => bcrypt('password')
         ]);
-        Dosen::create(['user_id' => $userDosen2->id, 'nidn' => 'NIDN456', 'nama_lengkap' => 'Dosen Dua, M.T']);
+        Dosen::create(['user_id' => $userDosen2->id, 'nidn' => '0415088203', 'nama_lengkap' => 'Siti Aminah, M.T']);
 
         $userMhs = User::create([
             'role_id' => $roleMahasiswa->id,
-            'name' => 'Mahasiswa Satu',
-            'email' => 'mahasiswa1@piksi.ac.id',
+            'name' => 'Ahmad Fauzi',
+            'email' => 'ahmad.fauzi@piksi.ac.id',
             'password' => bcrypt('password')
         ]);
-        Mahasiswa::create(['user_id' => $userMhs->id, 'nim' => 'NIM001', 'nama_lengkap' => 'Mahasiswa Satu', 'program_studi' => 'Teknik Informatika']);
+        Mahasiswa::create(['user_id' => $userMhs->id, 'nim' => '20230001', 'nama_lengkap' => 'Ahmad Fauzi', 'program_studi' => 'Manajemen Informatika']);
     }
 }
