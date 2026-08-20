@@ -3,7 +3,15 @@
 <div class="d-flex justify-content-between mb-3">
     <h2>Pengajuan Judul</h2>
     @if(auth()->user()->isMahasiswa())
-        <a href="{{ route('pengajuan.create') }}" class="btn btn-primary">Ajukan Judul</a>
+        @php
+            $pendaftaran = \App\Models\PendaftaranTa::where('mahasiswa_id', auth()->user()->mahasiswa->id)->first();
+            $canAjukan = $pendaftaran && $pendaftaran->status === 'disetujui';
+        @endphp
+        @if($canAjukan)
+            <a href="{{ route('pengajuan.create') }}" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Ajukan Judul</a>
+        @else
+            <a href="{{ route('pendaftaran-ta.create') }}" class="btn btn-warning fw-bold"><i class="bi bi-exclamation-triangle-fill me-1"></i> Lengkapi Syarat Pendaftaran</a>
+        @endif
     @endif
 </div>
 <div class="card border-0 shadow-sm">

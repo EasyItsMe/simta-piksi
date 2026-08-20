@@ -27,6 +27,12 @@ class PengajuanJudulController extends Controller {
 
     public function create() {
         if (!auth()->user()->isMahasiswa()) abort(403);
+
+        $pendaftaran = \App\Models\PendaftaranTa::where('mahasiswa_id', auth()->user()->mahasiswa->id)->first();
+        if (!$pendaftaran || $pendaftaran->status !== 'disetujui') {
+            return redirect()->route('pendaftaran-ta.create')->with('error', 'Anda harus mengunggah syarat pendaftaran TA dan menunggu persetujuan Admin sebelum dapat mengajukan judul.');
+        }
+
         return view('pengajuan.create');
     }
 

@@ -20,6 +20,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/password/update', [\App\Http\Controllers\AuthController::class, 'updatePassword'])->name('password.update');
     Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
+    Route::get('pendaftaran-ta', [\App\Http\Controllers\PendaftaranTaController::class, 'create'])->name('pendaftaran-ta.create');
+    Route::post('pendaftaran-ta', [\App\Http\Controllers\PendaftaranTaController::class, 'store'])->name('pendaftaran-ta.store');
+    
+    Route::get('admin/pendaftaran-ta', [\App\Http\Controllers\PendaftaranTaController::class, 'index'])->name('admin.pendaftaran-ta.index');
+    Route::patch('admin/pendaftaran-ta/{pendaftaran}/status', [\App\Http\Controllers\PendaftaranTaController::class, 'updateStatus'])->name('admin.pendaftaran-ta.status');
+
     Route::resource('pengajuan', \App\Http\Controllers\PengajuanJudulController::class);
     Route::post('pengajuan/{pengajuan}/set-pembimbing', [\App\Http\Controllers\PengajuanJudulController::class, 'setPembimbing'])->name('pengajuan.setPembimbing');
 

@@ -471,6 +471,12 @@
                     <li><a href="{{ route('admin.relasi') }}"><i class="bi bi-diagram-3-fill"></i> Relasi Dosen & Mahasiswa</a></li>
                     <li><a href="{{ route('admin.progress') }}"><i class="bi bi-clock-history"></i> Pantau Progress</a></li>
                     <li class="px-3 mt-3 mb-1 text-muted text-uppercase small fw-bold">Manajemen TA</li>
+                    <li><a href="{{ route('admin.pendaftaran-ta.index') }}"><i class="bi bi-ui-checks"></i> Verifikasi Pendaftaran</a></li>
+                @endif
+
+                @if(auth()->user()->isMahasiswa())
+                    <li class="px-3 mt-3 mb-1 text-muted text-uppercase small fw-bold">Tugas Akhir</li>
+                    <li><a href="{{ route('pendaftaran-ta.create') }}"><i class="bi bi-card-checklist"></i> Pendaftaran Syarat TA</a></li>
                 @endif
 
                 @if(auth()->user()->isAdmin() || auth()->user()->isMahasiswa())
