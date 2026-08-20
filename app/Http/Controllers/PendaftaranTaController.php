@@ -54,12 +54,16 @@ class PendaftaranTaController extends Controller
     // UNTUK ADMIN
     public function index()
     {
+        if (!auth()->user()->isAdmin()) abort(403);
+        
         $pendaftarans = PendaftaranTa::with('mahasiswa.user')->latest()->get();
         return view('admin.pendaftaran.index', compact('pendaftarans'));
     }
 
     public function updateStatus(Request $request, PendaftaranTa $pendaftaran)
     {
+        if (!auth()->user()->isAdmin()) abort(403);
+        
         $request->validate([
             'status' => 'required|in:disetujui,ditolak',
             'keterangan' => 'nullable|string'
