@@ -475,8 +475,7 @@
                 @endif
 
                 @if(auth()->user()->isMahasiswa())
-                    <li class="px-3 mt-3 mb-1 text-muted text-uppercase small fw-bold">Tugas Akhir</li>
-                    <li><a href="{{ route('pendaftaran-ta.create') }}"><i class="bi bi-card-checklist"></i> Pendaftaran Syarat TA</a></li>
+                    <li class="px-3 mt-3 mb-1 text-muted text-uppercase small fw-bold">Manajemen TA</li>
                 @endif
 
                 @if(auth()->user()->isAdmin() || auth()->user()->isMahasiswa())
