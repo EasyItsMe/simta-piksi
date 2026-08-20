@@ -10,6 +10,9 @@ Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login'])->n
 Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('guest')->group(function () {
+    Route::get('/register', [\App\Http\Controllers\AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register'])->name('register.post');
+
     Route::get('/forgot-password', [\App\Http\Controllers\PasswordResetController::class, 'showLinkRequestForm'])->name('password.request');
     Route::post('/forgot-password', [\App\Http\Controllers\PasswordResetController::class, 'sendResetLinkEmail'])->name('password.email');
     Route::get('/reset-password/{token}', [\App\Http\Controllers\PasswordResetController::class, 'showResetForm'])->name('password.reset');
